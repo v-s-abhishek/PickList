@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans antialiased overflow-x-hidden cursor-none;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+  }
+
+  h1 {
+    @apply text-4xl font-bold tracking-tight;
+  }
+
+  h2 {
+    @apply text-3xl font-bold tracking-tight;
+  }
+
+  h3 {
+    @apply text-2xl font-bold;
+  }
+
+  h4 {
+    @apply text-xl font-semibold;
+  }
+
+  /* Hide default cursor on interactive elements */
+  a, button, [role="button"], input[type="submit"], input[type="button"] {
+    @apply cursor-none;
+  }
+
+  /* Theme transition for all elements */
+  *, *::before, *::after {
+    @apply transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply relative inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-300 ease-out overflow-hidden;
+  }
+
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white 
+           hover:scale-105 active:scale-95 
+           hover:shadow-lg hover:shadow-blue-500/25;
+  }
+
+  .btn-secondary {
+    @apply bg-purple-600 hover:bg-purple-700 text-white
+           hover:scale-105 active:scale-95
+           hover:shadow-lg hover:shadow-purple-500/25;
+  }
+
+  .btn-outline {
+    @apply border border-gray-300 dark:border-gray-700 
+           hover:bg-gray-100 dark:hover:bg-gray-800
+           hover:scale-105 active:scale-95;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 
+           bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 
+           transition-all duration-200 hover:shadow-md;
+  }
+
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md 
+           transition-all duration-300 hover:scale-[1.02];
+  }
+
+  .category-card {
+    @apply card p-6 cursor-pointer;
+  }
+
+  .checklist-item {
+    @apply flex items-center p-3 border-b border-gray-100 dark:border-gray-700 last:border-b-0
+           hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all duration-200;
+  }
+
+  .checklist-item-checkbox {
+    @apply h-5 w-5 rounded-md border-2 border-gray-300 dark:border-gray-600 
+           text-blue-600 focus:ring-blue-500 transition-all duration-300
+           hover:border-blue-500 dark:hover:border-blue-400;
+  }
+}
+
+/* Custom cursor styles */
+.cursor {
+  @apply rounded-full;
+  pointer-events: none;
+  will-change: transform;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.cursor-dot {
+  @apply bg-blue-500 bg-opacity-50;
+  mix-blend-mode: difference;
+}
+
+.cursor-outline {
+  @apply border-2 border-blue-500 border-opacity-30;
+  mix-blend-mode: difference;
+}
+
+/* Animations */
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.5s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.4s ease-out forwards;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 5s linear infinite;
+}
+
+/* Theme transition animations */
+.dark {
+  @apply transition-colors duration-500;
+}
+
+/* Page transition animations */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 500ms, transform 500ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 500ms, transform 500ms;
+}
